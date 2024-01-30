@@ -166,6 +166,18 @@ void __stdcall hooks::PaintTraverse(std::uintptr_t vguiPanel, bool forceRepaint,
 				// draw outlines
 				interfaces::surface->DrawOutlinedRect(left - 1, top.y - 1, right + 1, bottom.y + 1);
 				interfaces::surface->DrawOutlinedRect(left + 1, top.y + 1, right + 1, bottom.y - 1);
+				
+				// health bar outline (drawing color is already black)
+				interfaces::surface->DrawOutlinedRect(left - 6, top.y - 1, left - 3, bottom.y + 1);
+
+				// health is an int from 0 -> 100, get percentage
+				const float healthFrac = player->GetHealth() * 0.01f;
+			
+				// set the health bar color to a split between red / green
+				interfaces::surface->DrawSetColor((1.f - healthFrac) * 255, 255 * healthFrac, 0, 255);
+
+				// draw the health bar!
+				interfaces::surface->DrawFilledRect(left - 5, bottom.y - (h * healthFrac), left - 4, bottom.y);
 			}
 		}
 	}
