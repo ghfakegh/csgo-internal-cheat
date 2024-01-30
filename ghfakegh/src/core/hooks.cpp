@@ -159,6 +159,13 @@ void __stdcall hooks::PaintTraverse(std::uintptr_t vguiPanel, bool forceRepaint,
 
 				// draw normal box
 				interfaces::surface->DrawOutlinedRect(left, top.y, right, bottom.y);
+
+				// set the color to black for outlines
+				interfaces::surface->DrawSetColor(0, 0, 0, 255);
+
+				// draw outlines
+				interfaces::surface->DrawOutlinedRect(left - 1, top.y - 1, right + 1, bottom.y + 1);
+				interfaces::surface->DrawOutlinedRect(left + 1, top.y + 1, right + 1, bottom.y - 1);
 			}
 		}
 	}
