@@ -1,0 +1,12 @@
+C:\Users\ghfak\Desktop\ghfakegh\ext\minhook\buffer.c;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\buffer.obj
+C:\Users\ghfak\Desktop\ghfakegh\ext\minhook\hde\hde32.c;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\hde32.obj
+C:\Users\ghfak\Desktop\ghfakegh\ext\minhook\hde\hde64.c;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\hde64.obj
+C:\Users\ghfak\Desktop\ghfakegh\ext\minhook\hook.c;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\hook.obj
+C:\Users\ghfak\Desktop\ghfakegh\ext\minhook\trampoline.c;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\trampoline.obj
+C:\Users\ghfak\Desktop\ghfakegh\src\core\globals.cpp;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\globals.obj
+C:\Users\ghfak\Desktop\ghfakegh\src\core\hooks.cpp;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\hooks.obj
+C:\Users\ghfak\Desktop\ghfakegh\src\core\interfaces.cpp;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\interfaces.obj
+C:\Users\ghfak\Desktop\ghfakegh\src\core\netvars.cpp;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\netvars.obj
+C:\Users\ghfak\Desktop\ghfakegh\src\hacks\misc.cpp;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\misc.obj
+C:\Users\ghfak\Desktop\ghfakegh\src\main.cpp;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\main.obj
+C:\Users\ghfak\Desktop\ghfakegh\src\util\memory.cpp;C:\Users\ghfak\Desktop\ghfakegh\build\intermediates\memory.obj
