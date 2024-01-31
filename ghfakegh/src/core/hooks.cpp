@@ -185,3 +185,53 @@ void __stdcall hooks::PaintTraverse(std::uintptr_t vguiPanel, bool forceRepaint,
 	// call the original function
 	PaintTraverseOriginal(interfaces::panel, vguiPanel, forceRepaint, allowForce);
 }
+
+void __stdcall hooks::DrawModel(
+	void* results,
+	const CDrawModelInfo& info,
+	CMatrix3x4* bones,
+	float* flexWeights,
+	float* flexDelayedWeights,
+	const CVector& modelOrigin,
+	const std::int32_t flags
+) noexcept
+{
+	// make sure local player && renderable pointer != nullptr
+	// or else *crash* :(
+	if (globals::localPlayer && info.renderable)
+	{
+		// get the base entity pointer from IClientUnknown
+		CEntity* entity = info.renderable->GetIClientUnknown()->GetBaseEntity();
+
+		// make sure entity is a valid enemy player!
+		if (entity && entity->IsPlayer() && entity->GetTeam() != globals::localPlayer->GetTeam())
+		{
+			// get our material to override
+			static IMaterial* material = interfaces::materialSystem->FindMaterial("debug/debugambientcube");
+
+			// float arrays to hold our chams colors
+			// put these in globals:: to modify with a menu
+			constexpr float hidden[3] = { 0.f, 1.f, 1.f };
+			constexpr float visible[3] = { 1.f, 1.f, 0.f };
+
+			// alpha modulate (once in my case)
+			interfaces::studioRender->SetAlphaModulation(1.f);
+
+			// show through walls 
+			material->SetMaterialVarFlag(IMaterial::IGNOREZ, true);
+			interfaces::studioRender->SetColorModulation(hidden);
+			interfaces::studioRender->ForcedMaterialOverride(material);
+			DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeights, flexDelayedWeights, modelOrigin, flags);
+
+			// do not show thro through walls
+			material->SetMaterialVarFlag(IMaterial::IGNOREZ, false);
+			interfaces::studioRender->SetColorModulation(visible);
+			interfaces::studioRender->ForcedMaterialOverride(material);
+			DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeights, flexDelayedWeights, modelOrigin, flags);
+
+			// reset the material overide + return from hook
+			return interfaces::studioRender->ForcedMaterialOverride(nullptr);
+		}
+	}
+	// call original DrawModel for things that arent getting chammed :)
+	DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeights, flexDelayedWeights, modelOrigin, flags);
